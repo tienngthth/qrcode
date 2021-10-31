@@ -1,4 +1,4 @@
-import cv2, requests
+import cv2
 from code import Code
 from camera import Camera
 
@@ -9,24 +9,6 @@ def validate_code(code, found_codes):
 		found_codes.add(code)
 		user_info = Code.parse_json(code)
 		print(user_info)
-
-# Close ticket and save signed engineer id
-def close_backlog(signed_engineer_ID):
-	car_id = requests.get(
-		"http://127.0.0.1:8080/cars/get/car/id/by/mac/address?" +
-		"mac_address=" + ap_mac_addr
-	).text
-	requests.put(
-		"http://127.0.0.1:8080/backlogs/update/signed/engineer/id/and/status/by/car/id?" +
-		"signed_engineer_id=" + signed_engineer_ID +
-		"&car_id=" + car_id
-	)
-	requests.put(
-		"http://127.0.0.1:8080/cars/update?" +
-		"status=Available" +
-		"&id=" + car_id
-	)
-	print("Done")
 
 def start_scanning():
 	Camera.start_camera()
