@@ -2,13 +2,10 @@ import cv2
 from code import Code
 from camera import Camera
 
-ap_mac_addr = "DC:A6:32:4A:0C:41"
-
 def validate_code(code, found_codes):
 	if code not in found_codes:
 		found_codes.add(code)
-		user_info = Code.parse_json(code)
-		print(user_info)
+		print(code)
 
 def start_scanning():
 	Camera.start_camera()
