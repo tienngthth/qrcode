@@ -6,6 +6,7 @@ import cv2
 from imutils.video import VideoStream
 from pyzbar import pyzbar
 from code import Code
+from client import SocketClient
 
 class Camera():
     video_stream = None
@@ -27,7 +28,8 @@ class Camera():
             Camera.draw_bounding_box(barcode)
             # retrieve and decode content
             code = Code(barcode)
-        cv2.imshow("Barcode Scanner", Camera.frame)
+        # cv2.imshow("Barcode Scanner", Camera.frame)
+        SocketClient.emit_image(Camera.frame)
         return code 
 
     @staticmethod
